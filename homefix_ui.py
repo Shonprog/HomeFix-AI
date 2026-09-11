@@ -1,9 +1,6 @@
 """
 Presentation helpers for the HomeFix AI Streamlit frontend:
-RTL/bidi styling, Hebrew status labels, and light parsing of case /
-reminder numbers out of the assistant's free-text replies (used only to
-power convenience buttons -- never to fabricate data that didn't come
-from the backend).
+RTL/bidi styling and Hebrew status labels.
 """
 
 from __future__ import annotations
@@ -36,38 +33,6 @@ def translate_status_words(text: str) -> str:
         return STATUS_HE.get(match.group(1).lower(), match.group(0))
 
     return _STATUS_WORD_RE.sub(_replace, text)
-
-
-# ---------------------------------------------------------------------------
-# Case / reminder number extraction (for the sidebar quick-action pickers).
-# ---------------------------------------------------------------------------
-
-_CASE_ID_RE = re.compile(r"קייס\s*#?\s*(\d+)")
-_REMINDER_ID_RE = re.compile(r"תזכורת\s*#?\s*(\d+)")
-
-
-def extract_ids(pattern: re.Pattern, text: str) -> list[int]:
-    if not text:
-        return []
-    seen: list[int] = []
-    for raw in pattern.findall(text):
-        value = int(raw)
-        if value not in seen:
-            seen.append(value)
-    return seen
-
-
-def extract_case_ids(text: str) -> list[int]:
-    return extract_ids(_CASE_ID_RE, text)
-
-
-def extract_reminder_ids(text: str) -> list[int]:
-    return extract_ids(_REMINDER_ID_RE, text)
-
-
-def merge_known_ids(known: list[int], new_ids: list[int]) -> list[int]:
-    merged = set(known) | set(new_ids)
-    return sorted(merged)
 
 
 # ---------------------------------------------------------------------------

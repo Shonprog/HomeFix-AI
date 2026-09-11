@@ -23,9 +23,6 @@ from homefix_api import HomeFixAPIError, send_message
 from homefix_ui import (
     APP_CSS,
     derive_conversation_title,
-    extract_case_ids,
-    extract_reminder_ids,
-    merge_known_ids,
     translate_status_words,
 )
 
@@ -46,8 +43,6 @@ def ensure_state() -> None:
     st.session_state.setdefault("view", "home")  # "home" | "chat"
     st.session_state.setdefault("messages", [])
     st.session_state.setdefault("user_email", "")
-    st.session_state.setdefault("known_case_ids", [])
-    st.session_state.setdefault("known_reminder_ids", [])
     st.session_state.setdefault("pending_action", None)
     st.session_state.setdefault("show_followup", False)
     st.session_state.setdefault("case_closed", False)
@@ -77,9 +72,7 @@ def start_new_issue() -> None:
     sync_active_conversation()  # keep the conversation we're leaving in the list
     st.session_state.session_id = str(uuid.uuid4())
     st.session_state.messages = []
-    st.session_state.known_case_ids = []
-    st.session_state.known_reminder_ids = []
-    st.session_state.pending_action = None
+    clear_pending_reminder_dialog()
     st.session_state.show_followup = False
     st.session_state.case_closed = False
     st.session_state.view = "chat"
@@ -93,24 +86,10 @@ def open_conversation(session_id: str) -> None:
     entry = st.session_state.conversations.get(session_id, {"messages": []})
     st.session_state.session_id = session_id
     st.session_state.messages = list(entry["messages"])
-    st.session_state.known_case_ids = []
-    st.session_state.known_reminder_ids = []
-    for message in st.session_state.messages:
-        if message["role"] == "assistant":
-            update_known_ids(message["content"])
-    st.session_state.pending_action = None
+    clear_pending_reminder_dialog()
     st.session_state.show_followup = False
     st.session_state.case_closed = False
     st.session_state.view = "chat"
-
-
-def update_known_ids(assistant_text: str) -> None:
-    st.session_state.known_case_ids = merge_known_ids(
-        st.session_state.known_case_ids, extract_case_ids(assistant_text)
-    )
-    st.session_state.known_reminder_ids = merge_known_ids(
-        st.session_state.known_reminder_ids, extract_reminder_ids(assistant_text)
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -156,7 +135,6 @@ def perform(
         st.session_state.messages.append(
             {"role": "assistant", "content": clean_message}
         )
-        update_known_ids(clean_message)
         st.session_state.show_followup = next_followup
 
     sync_active_conversation()
@@ -166,6 +144,7 @@ def perform(
 def close_active_case() -> None:
     """Explicit "הסתדר ✅" action: closes the active case via task_action
     instead of sending it as a normal troubleshooting chat message."""
+    clear_pending_reminder_dialog()
     st.session_state.messages.append(
         {"role": "user", "content": "✅ הבעיה הסתדרה"}
     )
@@ -197,9 +176,24 @@ def close_active_case() -> None:
 # ---------------------------------------------------------------------------
 # Email dialog — shown only when an email-requiring action is queued and no
 # email is known yet.
+#
+# Bug fix: st.dialog has no way to run our code on a plain rerun, so without
+# on_dismiss, closing via the native "X" (or ESC / outside-click) left
+# `pending_action` set and the dialog would silently reopen on the next
+# unrelated rerun (e.g. clicking "הסתדר"). `on_dismiss` runs our cleanup
+# callback for exactly that case; every other way to leave the dialog
+# (Cancel, closing the active case, starting a new issue, opening another
+# conversation) also routes through the same clear_pending_reminder_dialog()
+# helper so no path can leave stale state behind.
 # ---------------------------------------------------------------------------
 
-@st.dialog("כתובת אימייל לתזכורות")
+def clear_pending_reminder_dialog() -> None:
+    """Reset all session state that could cause the reminder/email dialog
+    to (re)open on a later, unrelated rerun."""
+    st.session_state.pending_action = None
+
+
+@st.dialog("כתובת אימייל לתזכורות", on_dismiss=clear_pending_reminder_dialog)
 def email_dialog() -> None:
     st.write(
         "כדי לנהל תזכורות ולשלוח עדכונים, נשמח לקבל את כתובת האימייל שלך."
@@ -217,7 +211,7 @@ def email_dialog() -> None:
         else:
             st.warning("נא להזין כתובת אימייל תקינה.")
     if col_cancel.button("ביטול", use_container_width=True):
-        st.session_state.pending_action = None
+        clear_pending_reminder_dialog()
         st.rerun()
 
 
@@ -288,91 +282,6 @@ def render_sidebar() -> None:
                 echo="🔔 התזכורות שלי",
                 requires_email=True,
             )
-
-        st.divider()
-
-        with st.expander("פעולות על קייס", icon=":material/build:"):
-            known_cases = st.session_state.known_case_ids
-            default_case = known_cases[-1] if known_cases else 1
-            case_id = st.number_input(
-                "מספר קייס",
-                min_value=1,
-                step=1,
-                value=default_case,
-                key="case_id_input",
-                help="המספר מופיע בהודעות של HomeFix AI, למשל \"קייס 22\".",
-            )
-            c1, c2, c3 = st.columns(3)
-            if c1.button(
-                "המשך",
-                icon=":material/chat:",
-                help="המשך טיפול",
-                use_container_width=True,
-            ):
-                st.session_state.view = "chat"
-                perform(
-                    f"אני רוצה להמשיך את הטיפול בקייס {case_id}",
-                    echo=f"💬 המשך טיפול בקייס {case_id}",
-                )
-            if c2.button(
-                "תזכורת",
-                icon=":material/schedule:",
-                help="צור תזכורת לקייס",
-                use_container_width=True,
-            ):
-                st.session_state.view = "chat"
-                perform(
-                    f"תזכיר לי לבדוק שוב את קייס {case_id} מחר",
-                    echo=f"⏰ תזכורת לבדיקת קייס {case_id}",
-                    requires_email=True,
-                )
-            if c3.button(
-                "סגירה",
-                icon=":material/check_circle:",
-                help="סגור קייס",
-                use_container_width=True,
-            ):
-                st.session_state.view = "chat"
-                perform(
-                    f"תסגור את קייס {case_id}",
-                    echo=f"✅ סגירת קייס {case_id}",
-                )
-
-        with st.expander("פעולות על תזכורת", icon=":material/schedule:"):
-            known_reminders = st.session_state.known_reminder_ids
-            default_reminder = known_reminders[-1] if known_reminders else 1
-            reminder_id = st.number_input(
-                "מספר תזכורת",
-                min_value=1,
-                step=1,
-                value=default_reminder,
-                key="reminder_id_input",
-                help="המספר מופיע בהודעות של HomeFix AI, למשל \"תזכורת 9\".",
-            )
-            new_date = st.date_input("תאריך חדש", key="reminder_date_input")
-            if st.button(
-                "עדכון תאריך",
-                icon=":material/edit_calendar:",
-                use_container_width=True,
-            ):
-                st.session_state.view = "chat"
-                date_str = f"{new_date.day:02d}/{new_date.month:02d}/{new_date.year}"
-                perform(
-                    f"תעדכן את תזכורת {reminder_id} ל-{date_str}",
-                    echo=f"📅 עדכון תאריך לתזכורת {reminder_id} ל-{date_str}",
-                    requires_email=True,
-                )
-            if st.button(
-                "סמן כהושלמה",
-                icon=":material/check_circle:",
-                use_container_width=True,
-            ):
-                st.session_state.view = "chat"
-                perform(
-                    f"תסגור את תזכורת {reminder_id}",
-                    echo=f"✅ סימון תזכורת {reminder_id} כהושלמה",
-                    requires_email=True,
-                )
 
         st.divider()
 
