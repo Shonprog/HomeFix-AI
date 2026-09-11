@@ -1,0 +1,434 @@
+{
+  "name": "HomeFix AI RAG English-Only Pack",
+  "version": "3.0",
+  "document_count": 24,
+  "language": "en",
+  "notes": [
+    "English-only manufacturer documentation for clean PDF text extraction.",
+    "Hebrew PDFs from the earlier pack are intentionally excluded.",
+    "Includes official Samsung English S90D user manual and remote guide."
+  ],
+  "documents": [
+    {
+      "category": "tv",
+      "manufacturer": "LG",
+      "model_family": "legacy_LCD_TV",
+      "document_type": "owners_manual",
+      "language": "en",
+      "filename": "tv/LG_LCD_TV_Owners_Manual_EN.pdf",
+      "url": "https://gscs-b2c.lge.com/open/downloadFile?fileId=KROWM000170237.pdf",
+      "source_page": "https://www.lg.com/support/",
+      "topics": [
+        "power",
+        "picture",
+        "sound",
+        "inputs",
+        "remote",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "washing_machine",
+      "manufacturer": "Bosch",
+      "model_family": "WGG254ZEGR",
+      "document_type": "user_manual",
+      "language": "en",
+      "filename": "washing_machines/Bosch_WGG254ZEGR_User_Manual_EN.pdf",
+      "url": "https://media3.bosch-home.com/Documents/9001821730_A.pdf",
+      "source_page": "https://media3.bosch-home.com/Documents/9001821730_A.pdf",
+      "topics": [
+        "programs",
+        "drain",
+        "spin",
+        "water",
+        "errors",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "washing_machine",
+      "manufacturer": "AEG",
+      "model_family": "L9FEB946",
+      "document_type": "user_manual",
+      "language": "en",
+      "filename": "washing_machines/AEG_L9FEB946_User_Manual_EN.pdf",
+      "url": "https://api.electrolux-medialibrary.com/asset/ea9eec5b-014c-429e-852a-c6b448e86e8f/E4RM3Q/e9a52428-164e-4bce-b516-a5cebcdb75b7/ORIGINAL/e9a52428-164e-4bce-b516-a5cebcdb75b7.pdf",
+      "source_page": "https://www.aeg.com/support/",
+      "topics": [
+        "programs",
+        "water",
+        "spin",
+        "errors",
+        "maintenance",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "washing_machine",
+      "manufacturer": "LG",
+      "model_family": "WT-R851_WT-R801",
+      "document_type": "owners_manual",
+      "language": "en",
+      "filename": "washing_machines/LG_WT-R851_WT-R801_Owners_Manual_EN.pdf",
+      "url": "https://gscs-b2c.lge.com/open/downloadFile?fileId=KROWM000006363.pdf",
+      "source_page": "https://www.lg.com/support/",
+      "topics": [
+        "programs",
+        "water",
+        "drain",
+        "spin",
+        "errors"
+      ]
+    },
+    {
+      "category": "washing_machine",
+      "manufacturer": "LG",
+      "model_family": "F4WV7_F4V7",
+      "document_type": "owners_manual",
+      "language": "en",
+      "filename": "washing_machines/LG_F4WV7_F4V7_Owners_Manual_EN.pdf",
+      "url": "https://gscs-b2c.lge.com/open/downloadFile?fileId=1zmfzNsyxM1pEVst1b3DsA",
+      "source_page": "https://www.lg.com/support/",
+      "topics": [
+        "installation",
+        "programs",
+        "errors",
+        "maintenance",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "dryer",
+      "manufacturer": "LG",
+      "model_family": "TD-V10115E",
+      "document_type": "owners_manual",
+      "language": "en",
+      "filename": "dryers/LG_TD-V10115E_Owners_Manual_EN.pdf",
+      "url": "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000187607.pdf",
+      "source_page": "https://www.lg.com/support/",
+      "topics": [
+        "drying",
+        "sensor",
+        "heat",
+        "airflow",
+        "errors",
+        "maintenance"
+      ]
+    },
+    {
+      "category": "dryer",
+      "manufacturer": "LG",
+      "model_family": "generic_sensor_dryer",
+      "document_type": "owners_manual",
+      "language": "en",
+      "filename": "dryers/LG_Sensor_Dryer_Owners_Manual_EN.pdf",
+      "url": "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000113855.pdf",
+      "source_page": "https://www.lg.com/support/",
+      "topics": [
+        "sensor_dry",
+        "manual_dry",
+        "noise",
+        "airflow",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "dishwasher",
+      "manufacturer": "Bosch",
+      "model_family": "SMU8EDS01A",
+      "document_type": "user_manual",
+      "language": "en",
+      "filename": "dishwashers/Bosch_SMU8EDS01A_User_Manual_EN.pdf",
+      "url": "https://media3.bosch-home.com/Documents/9001720343_A.pdf",
+      "source_page": "https://media3.bosch-home.com/Documents/9001720343_A.pdf",
+      "topics": [
+        "drain",
+        "water",
+        "filters",
+        "spray_arms",
+        "errors",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "dishwasher",
+      "manufacturer": "LG",
+      "model_family": "generic_dishwasher",
+      "document_type": "owners_manual",
+      "language": "en",
+      "filename": "dishwashers/LG_Dishwasher_Owners_Manual_EN.pdf",
+      "url": "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000606713.pdf",
+      "source_page": "https://www.lg.com/support/",
+      "topics": [
+        "water",
+        "drain",
+        "filters",
+        "error_codes",
+        "noise",
+        "smart_diagnosis"
+      ]
+    },
+    {
+      "category": "refrigerator",
+      "manufacturer": "LG",
+      "model_family": "generic_refrigerator_freezer",
+      "document_type": "owners_manual",
+      "language": "en",
+      "filename": "refrigerators/LG_Refrigerator_Freezer_Owners_Manual_EN.pdf",
+      "url": "https://gscs-b2c.lge.com/open/downloadFile?fileId=KROWM000085767.pdf",
+      "source_page": "https://www.lg.com/support/",
+      "topics": [
+        "cooling",
+        "freezer",
+        "temperature",
+        "noise",
+        "maintenance"
+      ]
+    },
+    {
+      "category": "refrigerator",
+      "manufacturer": "LG",
+      "model_family": "top_mount",
+      "document_type": "owners_manual",
+      "language": "en",
+      "filename": "refrigerators/LG_Top_Mount_Refrigerator_Owners_Manual_EN.pdf",
+      "url": "https://gscs-b2c.lge.com/open/downloadFile?fileId=KROWM000313925.pdf",
+      "source_page": "https://www.lg.com/support/",
+      "topics": [
+        "cooling",
+        "temperature",
+        "noise",
+        "ice",
+        "maintenance",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "refrigerator",
+      "manufacturer": "LG",
+      "model_family": "fridge_freezer_modern",
+      "document_type": "simple_owners_manual",
+      "language": "en",
+      "filename": "refrigerators/LG_Fridge_Freezer_Simple_Owners_Manual_EN.pdf",
+      "url": "https://gscs-b2c.lge.com/open/downloadFile?fileId=B1kLGbeITyMJQvy6IJyw",
+      "source_page": "https://www.lg.com/support/",
+      "topics": [
+        "safety",
+        "cooling",
+        "operation",
+        "maintenance"
+      ]
+    },
+    {
+      "category": "refrigerator",
+      "manufacturer": "Bosch",
+      "model_family": "KGN_family_v1",
+      "document_type": "user_manual",
+      "language": "en",
+      "filename": "refrigerators/Bosch_KGN_User_Manual_9001721446_EN.pdf",
+      "url": "https://media3.bosch-home.com/Documents/9001721446_A.pdf",
+      "source_page": "https://media3.bosch-home.com/Documents/9001721446_A.pdf",
+      "topics": [
+        "temperature",
+        "alarm",
+        "cooling",
+        "freezing",
+        "storage"
+      ]
+    },
+    {
+      "category": "refrigerator",
+      "manufacturer": "Bosch",
+      "model_family": "KGN_family_v2",
+      "document_type": "user_manual",
+      "language": "en",
+      "filename": "refrigerators/Bosch_KGN_User_Manual_9001630033_EN.pdf",
+      "url": "https://media3.bosch-home.com/Documents/9001630033_D.pdf",
+      "source_page": "https://media3.bosch-home.com/Documents/9001630033_D.pdf",
+      "topics": [
+        "power",
+        "temperature",
+        "super_cooling",
+        "alarm",
+        "operation"
+      ]
+    },
+    {
+      "category": "oven",
+      "manufacturer": "LG",
+      "model_family": "SolarDOM_MA3882QCS",
+      "document_type": "owners_manual",
+      "language": "en",
+      "filename": "ovens/LG_SolarDOM_MA3882QCS_Owners_Manual_EN.pdf",
+      "url": "https://gscs-b2c.lge.com/open/downloadFile?fileId=KROWM000512043.pdf",
+      "source_page": "https://www.lg.com/support/",
+      "topics": [
+        "heating",
+        "programs",
+        "controls",
+        "errors",
+        "operation"
+      ]
+    },
+    {
+      "category": "air_conditioner",
+      "manufacturer": "Daikin",
+      "model_family": "FDQ_FBQ_FCQ_FCQH",
+      "document_type": "operation_manual",
+      "language": "en",
+      "filename": "air_conditioners/Daikin_Split_System_Operation_Manual_EN.pdf",
+      "url": "https://www.daikin.eu/content/dam/document-library/operation-manuals/ac/sky-air/fdq-c/FDQ125C5VEB_3PEN468514-7_Operation%20manual_English.pdf",
+      "source_page": "https://www.daikin.eu/",
+      "topics": [
+        "cooling",
+        "heating",
+        "filters",
+        "operation",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "air_conditioner",
+      "manufacturer": "Daikin",
+      "model_family": "ADEA_A",
+      "document_type": "operation_manual",
+      "language": "en",
+      "filename": "air_conditioners/Daikin_ADEA_A_Operation_Manual_EN.pdf",
+      "url": "https://internet-be-stage.daikin.eu/content/dam/document-library/operation-manuals/ac/split/adea-a/ADEA_A_3PEN551387-1_2018_09_Operation%20manual_English.pdf",
+      "source_page": "https://www.daikin.eu/",
+      "topics": [
+        "operation",
+        "filters",
+        "maintenance",
+        "troubleshooting",
+        "noise",
+        "heating"
+      ]
+    },
+    {
+      "category": "router",
+      "manufacturer": "TP-Link",
+      "model_family": "Archer_AX55",
+      "document_type": "user_guide",
+      "language": "en",
+      "filename": "networking/TP-Link_Archer_AX55_User_Guide_EN.pdf",
+      "url": "https://static.tp-link.com/upload/manual/2021/202109/20210915/1910013020_Archer%20AX55_UG_REV1.0.0.pdf",
+      "source_page": "https://www.tp-link.com/support/download/archer-ax55/",
+      "topics": [
+        "wifi",
+        "internet",
+        "setup",
+        "ssid",
+        "password",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "router",
+      "manufacturer": "TP-Link",
+      "model_family": "Archer_AXE75",
+      "document_type": "user_guide",
+      "language": "en",
+      "filename": "networking/TP-Link_Archer_AXE75_User_Guide_EN.pdf",
+      "url": "https://static.tp-link.com/upload/manual/2022/202203/20220316/1910013121_Archer%20AXE75_UG_REV1.0.0.pdf",
+      "source_page": "https://www.tp-link.com/support/download/archer-axe75/",
+      "topics": [
+        "wifi6e",
+        "internet",
+        "setup",
+        "ssid",
+        "security",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "router",
+      "manufacturer": "ASUS",
+      "model_family": "RT-AX58U",
+      "document_type": "user_manual",
+      "language": "en",
+      "filename": "networking/ASUS_RT-AX58U_User_Manual_EN.pdf",
+      "url": "https://dlcdnets.asus.com/pub/ASUS/wireless/RT-AX58U/E16133_RT-AX58U_UM_1119.pdf",
+      "source_page": "https://www.asus.com/supportonly/rt-ax58u/helpdesk_manual/",
+      "topics": [
+        "wifi",
+        "internet",
+        "setup",
+        "security",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "router",
+      "manufacturer": "NETGEAR",
+      "model_family": "RAX5",
+      "document_type": "user_manual",
+      "language": "en",
+      "filename": "networking/NETGEAR_RAX5_User_Manual_EN.pdf",
+      "url": "https://www.downloads.netgear.com/files/GDC/RAX5/RAX5_UM_EN.pdf",
+      "source_page": "https://www.netgear.com/support/product/rax5/",
+      "topics": [
+        "wifi",
+        "internet",
+        "setup",
+        "security",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "router",
+      "manufacturer": "NETGEAR",
+      "model_family": "RAX80",
+      "document_type": "user_manual",
+      "language": "en",
+      "filename": "networking/NETGEAR_RAX80_User_Manual_EN.pdf",
+      "url": "https://www.downloads.netgear.com/files/GDC/RAX80/RAX80_UM_EN.pdf",
+      "source_page": "https://www.netgear.com/support/product/rax80/",
+      "topics": [
+        "wifi",
+        "internet",
+        "guest_network",
+        "ssid",
+        "security",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "tv",
+      "manufacturer": "Samsung",
+      "model_family": "S90D",
+      "document_type": "user_manual",
+      "language": "en",
+      "filename": "tv/Samsung_S90D_User_Manual_EN.pdf",
+      "url": "https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDSite=UNI_UK&OriginYN=N&ModelType=N&ModelName=QE65S90DAT&CttFileID=11130749&CDCttType=UM&VPath=UM%2F202511%2F20251122082756001%2FBN81-27185C-660_EUG_ROPDVBEUF_EU_ENG_250804.0.pdf",
+      "source_page": "https://www.samsung.com/uk/support/model/QE65S90DATXXU/",
+      "topics": [
+        "power",
+        "picture",
+        "sound",
+        "HDMI",
+        "remote",
+        "network",
+        "apps",
+        "troubleshooting"
+      ]
+    },
+    {
+      "category": "tv",
+      "manufacturer": "Samsung",
+      "model_family": "S90D_remote",
+      "document_type": "remote_control_guide",
+      "language": "en",
+      "filename": "tv/Samsung_S90D_Remote_Control_Guide_EN.pdf",
+      "url": "https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDSite=UNI_UK&OriginYN=N&ModelType=N&ModelName=QE65S90DAT&CttFileID=11261225&CDCttType=EM&VPath=EM%2F202601%2F20260128043452001%2FBN68-17835C-01_RG_Y24+QLED+QD+DU8+LS03_XU_ENG_251212.0.pdf",
+      "source_page": "https://www.samsung.com/uk/support/model/QE65S90DATXXU/",
+      "topics": [
+        "remote",
+        "buttons",
+        "source",
+        "inputs",
+        "settings"
+      ]
+    }
+  ]
+}
