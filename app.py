@@ -103,12 +103,14 @@ def perform(
     requires_email: bool = False,
     image_file=None,
     next_followup: bool = False,
+    task_action: str = "",
 ) -> None:
     if requires_email and not st.session_state.user_email:
         st.session_state.pending_action = {
             "description": description,
             "echo": echo,
             "next_followup": next_followup,
+            "task_action": task_action,
         }
         st.rerun()
         return
@@ -124,6 +126,7 @@ def perform(
                 session_id=st.session_state.session_id,
                 user_email=st.session_state.user_email,
                 image_file=image_file,
+                task_action=task_action,
             )
     except HomeFixAPIError as exc:
         st.session_state.messages.append(
@@ -273,6 +276,7 @@ def render_sidebar() -> None:
             perform(
                 "איזה קייסים פתוחים יש לי?",
                 echo="📂 הקייסים שלי",
+                task_action="list_open_cases",
             )
 
         if st.button("התזכורות שלי", icon=":material/notifications:", use_container_width=True):
@@ -281,6 +285,7 @@ def render_sidebar() -> None:
                 "מה התזכורות הפתוחות שלי?",
                 echo="🔔 התזכורות שלי",
                 requires_email=True,
+                task_action="list_reminders",
             )
 
         st.divider()
@@ -352,7 +357,11 @@ def render_home() -> None:
         key="home_cases",
     ):
         st.session_state.view = "chat"
-        perform("איזה קייסים פתוחים יש לי?", echo="📂 הקייסים שלי")
+        perform(
+            "איזה קייסים פתוחים יש לי?",
+            echo="📂 הקייסים שלי",
+            task_action="list_open_cases",
+        )
     if q2.button(
         "התזכורות שלי",
         icon=":material/notifications:",
@@ -364,6 +373,7 @@ def render_home() -> None:
             "מה התזכורות הפתוחות שלי?",
             echo="🔔 התזכורות שלי",
             requires_email=True,
+            task_action="list_reminders",
         )
 
     st.divider()
@@ -417,6 +427,7 @@ def render_chat_messages() -> None:
                 "תזכיר לי לבדוק שוב מחר אם הבעיה הסתדרה",
                 echo="⏰ תזכיר לי לבדוק אחר כך",
                 requires_email=True,
+                task_action="create_reminder",
             )
 
     if st.session_state.case_closed:
@@ -482,6 +493,7 @@ def main() -> None:
             echo=action.get("echo"),
             requires_email=False,
             next_followup=action.get("next_followup", False),
+            task_action=action.get("task_action", ""),
         )
         return
     if st.session_state.pending_action and not st.session_state.user_email:
